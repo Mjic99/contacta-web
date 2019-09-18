@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChildren, QueryList } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,14 +9,29 @@ export class DashboardComponent implements OnInit {
 
   page : string
 
-  constructor() { }
+  descuentos = [
+    {name: 'Super descuentazo'},
+    {name: 'Quincena especial'},
+    {name: 'Fin de mes de locura'},
+    {name: 'Descuento navideño'},
+  ]
+
+  @ViewChildren('option') optionsDivs: QueryList<any>
+
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
-    this.page = 'inicio'
+    this.page = 'Inicio'
   }
 
-  changePage(page: string) {
-    this.page = page
+  changePage(event) {
+    this.page = event.target.innerHTML
+
+    this.optionsDivs.forEach( (option) => {
+      this.renderer.removeClass(option.nativeElement, 'selected')
+    })
+
+    if (event.target) this.renderer.addClass(event.target, 'selected')
   }
 
 }

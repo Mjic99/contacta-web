@@ -20,13 +20,22 @@
       border-radius: 50%;
     }
 
-    mat-list-item{
-      &:hover {
-        background-color: gray;
-      }
-      &:selected {
+    div {
+      padding: 1rem;
 
+      &:hover {
+        background-color: #E5E9F2;
+      }
+      &:focus {
+        background-color: #E5E9F2;
       }
     }
+    .selected {
+      background-color: #E5E9F2;
+    }
+  }
+
+  div.row {
+    margin-top: 1rem;
   }
 }
