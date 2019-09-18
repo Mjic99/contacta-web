@@ -1,0 +1,26 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="side" opened>
+    <mat-list role="list">
+      <img src="https://via.placeholder.com/150"/>
+      <mat-list-item role="listitem" (click)="changePage('inicio')">Inicio</mat-list-item>
+      <mat-list-item role="listitem" (click)="changePage('usuarios')">Usuarios</mat-list-item>
+      <mat-list-item role="listitem" (click)="changePage('historial')">Historial de servicios</mat-list-item>
+      <mat-list-item role="listitem">Chats</mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="container-fluid">
+      <dashboard-inicio *ngIf="this.page=='inicio'">
+      </dashboard-inicio>
+      <dashboard-usuarios *ngIf="this.page=='usuarios'">
+      </dashboard-usuarios>
+      <dashboard-historial *ngIf="this.page=='historial'">
+      </dashboard-historial>
+      <div class="row">
+          <div class="col-sm">
+            crear descuento
+          </div>
+        </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
