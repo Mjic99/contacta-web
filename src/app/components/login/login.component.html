@@ -1,11 +1,11 @@
 <div class="bkgnd">
-  <form class="login-form">
+  <form class="login-form" (submit)="onLogin()">
     <h1>Ingresar</h1>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="Usuario">
+      <input [(ngModel)]="email" name="email" matInput placeholder="Correo">
     </mat-form-field>
     <mat-form-field class="example-full-width">
-      <input matInput type="password" placeholder="Contraseña">
+      <input [(ngModel)]="password" name="password" matInput type="password" placeholder="Contraseña">
     </mat-form-field>
     <button mat-raised-button color="primary">Primary</button>
     <a href="#">Olvidé mi contraseña</a>
