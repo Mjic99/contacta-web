@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { getMaxListeners } from 'cluster';
-import { ClassGetter } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'dashboard-usuarios',
