@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, Renderer2, ViewChildren, QueryList, HostListener, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,6 +8,8 @@ import { Component, OnInit, Renderer2, ViewChildren, QueryList } from '@angular/
 export class DashboardComponent implements OnInit {
 
   page : string
+  @ViewChildren('option') optionsDivs: QueryList<any>
+  @ViewChild('sidenav', {static: true}) sidenav
 
   descuentos = [
     {name: 'Super descuentazo'},
@@ -16,22 +18,29 @@ export class DashboardComponent implements OnInit {
     {name: 'Descuento navideño'},
   ]
 
-  @ViewChildren('option') optionsDivs: QueryList<any>
-
   constructor(private renderer: Renderer2) { }
 
   ngOnInit() {
     this.page = 'Inicio'
+    this.onResize()
   }
 
   changePage(event) {
     this.page = event.target.innerHTML
-
     this.optionsDivs.forEach( (option) => {
       this.renderer.removeClass(option.nativeElement, 'selected')
     })
-
     if (event.target) this.renderer.addClass(event.target, 'selected')
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event?) {
+    if (window.innerWidth < 500) {
+      this.sidenav.close()
+    }
+    else {
+      this.sidenav.open()
+    }
   }
 
 }

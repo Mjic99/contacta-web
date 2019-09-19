@@ -1,5 +1,14 @@
 div.row {
-  height: 50vh;
+  min-height: 50vh;
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+
+  div {
+    padding-top: 0.5rem;
+    
+    &.right-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
