@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../../services/admin.service';
 
 @Component({
   selector: 'dashboard-usuarios',
@@ -12,7 +13,7 @@ export class UsuariosComponent implements OnInit {
 
   userFields: string[] = ['email', 'type']
 
-  users = [
+  /* users = [
     {email: 'jorge@gmail.com', type: 'Prestador', info: ['Baneado 2 veces']},
     {email: 'juan@gmail.com', type: 'Cliente', info: ['Baneado 2 veces']},
     {email: 'pepe@gmail.com', type: 'Prestador', info: ['Baneado 2 veces']},
@@ -20,22 +21,24 @@ export class UsuariosComponent implements OnInit {
     {email: 'jorge@gmail.com', type: 'Cliente', info: ['Baneado 2 veces']},
     {email: 'marcelo@hotmail.com', type: 'Cliente', info: ['Baneado 2 veces']},
     {email: 'juan@gmail.com', type: 'Prestador', info: ['Baneado 2 veces']},
-  ]
+  ] */
+  users: Object[]
 
   filteredUsers: Object[]
 
-  constructor() { }
+  constructor(private adminService: AdminService) { }
 
   ngOnInit() {
-    this.filteredUsers = this.users
+    this.adminService.getUserList().subscribe(users => {
+      this.users = users
+      this.filteredUsers = users
+    });
   }
 
   filterList () {
     this.filteredUsers = this.users.filter( user => {
       return user[this.filterField].toLowerCase().includes(this.filterValue.toLowerCase())
     })
-    console.log(this.filterField)
-    console.log(this.filterValue)
   }
 
 }
