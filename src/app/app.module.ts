@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { AgmCoreModule } from '@agm/core';
 
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
@@ -19,6 +20,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -41,6 +43,9 @@ import { HistorialComponent } from './components/dashboard/historial/historial.c
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBdmu4YYgKQKu-E32W8mXuEQJCv8c7J9o4'
+    }),
     AngularFireDatabaseModule,
     FormsModule,
     BrowserModule,
@@ -56,7 +61,8 @@ import { HistorialComponent } from './components/dashboard/historial/historial.c
     MatSnackBarModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonToggleModule
   ],
   providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]

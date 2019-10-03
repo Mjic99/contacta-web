@@ -39,6 +39,19 @@
 
   mat-sidenav-content {
     background-color: #E5E9F2;
+
+    mat-form-field {
+      display: block;
+    }
+
+    div.col-sm {
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+    }
   }
 
   div.row {

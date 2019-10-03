@@ -2,6 +2,10 @@
   <div class="col-sm">
     <div class="row">
       <div class="col-sm">
+        <mat-button-toggle-group [(ngModel)]="userListType" (change)="setUsersType()" name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle value="cliente">Clientes</mat-button-toggle>
+          <mat-button-toggle value="trabajador">Trabajadores</mat-button-toggle>
+        </mat-button-toggle-group>
         <mat-form-field>
           <mat-label>Seleccionar campo</mat-label>
           <mat-select [(ngModel)]="filterField">
@@ -29,11 +33,14 @@
             {{user.type}}
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <ul>
-          <li *ngFor="let item of user.info">
-            {{item}}
-          </li>
-        </ul>
+        <p *ngIf="user.SERVICIOSREALIZADOS; else clientInfo">
+          Servicios realizados: {{user.SERVICIOSREALIZADOS.length}}
+        </p>
+        <ng-template #clientInfo>
+          <p *ngIf="user.SERVICIOS">
+            Servicios contratados: {{user.SERVICIOS.length}}
+          </p>
+        </ng-template>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

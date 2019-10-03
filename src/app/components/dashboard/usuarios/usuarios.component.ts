@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdminService } from '../../../services/admin.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'dashboard-usuarios',
@@ -7,6 +8,8 @@ import { AdminService } from '../../../services/admin.service';
   styleUrls: ['./usuarios.component.scss']
 })
 export class UsuariosComponent implements OnInit {
+
+  userListType: string = "cliente"
 
   filterField: string
   filterValue : string
@@ -29,18 +32,26 @@ export class UsuariosComponent implements OnInit {
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
-    this.adminService.getUserList().subscribe(users => {
-      this.users = users
-      this.filteredUsers = users
-      this.users[0].SERVICIOSREALIZADOS[0].get().then((res) => {
-        console.log(res.data())
-      })
-    })
+    this.setUsersType()
   }
 
   filterList () {
     this.filteredUsers = this.users.filter( user => {
       return user[this.filterField].toLowerCase().includes(this.filterValue.toLowerCase())
+    })
+  }
+
+  setUsersType() {
+    let obs: Observable<any[]>
+    if (this.userListType == "cliente") {
+      obs = this.adminService.getClienteList()
+    }
+    else {
+      obs = this.adminService.getTrabajadorList()
+    }
+    obs.subscribe(users => {
+      this.users = users
+      this.filteredUsers = users
     })
   }
 
