@@ -22,7 +22,7 @@ export class UsuariosComponent implements OnInit {
     {email: 'marcelo@hotmail.com', type: 'Cliente', info: ['Baneado 2 veces']},
     {email: 'juan@gmail.com', type: 'Prestador', info: ['Baneado 2 veces']},
   ] */
-  users: Object[]
+  users: any[]
 
   filteredUsers: Object[]
 
@@ -32,7 +32,10 @@ export class UsuariosComponent implements OnInit {
     this.adminService.getUserList().subscribe(users => {
       this.users = users
       this.filteredUsers = users
-    });
+      this.users[0].SERVICIOSREALIZADOS[0].get().then((res) => {
+        console.log(res.data())
+      })
+    })
   }
 
   filterList () {

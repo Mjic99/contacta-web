@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  private url : string = 'https://us-central1-contacta-d4362.cloudfunctions.net/'
+  constructor (private db: AngularFirestore) { }
 
-  constructor (private http:HttpClient) { }
+  getUserList () : Observable<any[]> {
+    return this.db.collection('Trabajador_modelo').valueChanges();
+  }
 
-  getUserList ():Observable<any[]> {
-    return this.http.get<any[]>(`${this.url}getAllUsers`);
+  addDescuento (descuento: Object) : Promise<any> {
+    return this.db.collection('Descuento_modelo').add(descuento)
   }
 
 }

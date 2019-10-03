@@ -1,4 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChildren, QueryList, HostListener, ViewChild } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,13 +14,16 @@ export class DashboardComponent implements OnInit {
   @ViewChild('sidenav', {static: true}) sidenav
 
   descuentos = [
-    {name: 'Super descuentazo'},
-    {name: 'Quincena especial'},
-    {name: 'Fin de mes de locura'},
-    {name: 'Descuento navideño'},
+    {name: 'Porcentaje'}
   ]
+  dctoTipo: string
+  dctoDesde: Date
+  dctoHasta: Date
+  dctoMonto: number
 
-  constructor(private renderer: Renderer2) { }
+  constructor(private renderer: Renderer2,
+    private adminService: AdminService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.page = 'Inicio'
@@ -31,6 +36,21 @@ export class DashboardComponent implements OnInit {
       this.renderer.removeClass(option.nativeElement, 'selected')
     })
     if (event.target) this.renderer.addClass(event.target, 'selected')
+  }
+
+  crearDescuento() {
+    this.adminService.addDescuento({
+      DESDE: this.dctoDesde,
+      HASTA: this.dctoHasta,
+      MONTO: this.dctoMonto,
+      TIPO: this.dctoTipo
+    }).then((res) => {
+      this.dctoDesde = null
+      this.dctoHasta = null
+      this.dctoMonto = null
+      this.dctoTipo = null
+      this.snackBar.open('Descuento creado satisfactoriamente', 'OK', {duration:2000})
+    })
   }
 
   @HostListener('window:resize', ['$event'])

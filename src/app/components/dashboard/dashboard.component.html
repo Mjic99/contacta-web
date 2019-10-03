@@ -23,20 +23,31 @@
         <div class="col-sm">
           <mat-form-field>
             <mat-label>Seleccionar tipo</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="dctoTipo">
               <mat-option *ngFor="let descuento of descuentos" [value]="descuento.name">
                 {{descuento.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
+          <mat-form-field>
+            <input matInput [(ngModel)]="dctoDesde" [matDatepicker]="pickerInicio" placeholder="Fecha de inicio">
+            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+            <mat-datepicker #pickerInicio></mat-datepicker>
+          </mat-form-field>
         </div>
         <div class="col-sm">
           <mat-form-field>
-            <input matInput placeholder="Porcentaje" type="number">
-            <span matSuffix>% &nbsp;</span>
+            <input matInput [(ngModel)]="dctoMonto" placeholder="Monto" type="number">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [(ngModel)]="dctoHasta" [matDatepicker]="pickerFin" placeholder="Fecha de fin">
+            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+            <mat-datepicker #pickerFin></mat-datepicker>
           </mat-form-field>
         </div>
-        <div class="col-sm"></div>
+        <div class="col-sm">
+          <button mat-raised-button (click)="crearDescuento()" color="primary">Crear</button>
+        </div>
       </div>
     </div>
   </mat-sidenav-content>
