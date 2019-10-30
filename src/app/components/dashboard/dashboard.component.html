@@ -16,39 +16,41 @@
       </dashboard-historial>
       <div class="row">
         <div class="col-sm">
-            <h3>Crear descuento</h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
-          <mat-form-field>
-            <mat-label>Seleccionar tipo</mat-label>
-            <mat-select [(ngModel)]="dctoTipo">
-              <mat-option *ngFor="let descuento of descuentos" [value]="descuento.name">
-                {{descuento.name}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput [(ngModel)]="dctoDesde" [matDatepicker]="pickerInicio" placeholder="Fecha de inicio">
-            <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
-            <mat-datepicker #pickerInicio></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-sm">
-          <mat-form-field>
-            <input matInput [(ngModel)]="dctoMonto" placeholder="Monto" type="number">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput [(ngModel)]="dctoHasta" [matDatepicker]="pickerFin" placeholder="Fecha de fin">
-            <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
-            <mat-datepicker #pickerFin></mat-datepicker>
-          </mat-form-field>
-        </div>
-        <div class="col-sm">
-          <div>
-            <button mat-raised-button (click)="crearDescuento()" color="primary">Crear</button>
+          <h3>Crear descuento</h3>
+          <div class="row">
+            <div class="col-sm">
+              <mat-form-field class="descField">
+                <mat-label>Seleccionar tipo</mat-label>
+                <mat-select [(ngModel)]="dctoTipo">
+                  <mat-option *ngFor="let descuento of descuentos" [value]="descuento.name">
+                    {{descuento.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="descField">
+                <input matInput [(ngModel)]="dctoDesde" [matDatepicker]="pickerInicio" placeholder="Fecha de inicio">
+                <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                <mat-datepicker #pickerInicio></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="descField">
+                <input matInput [(ngModel)]="dctoClave" placeholder="Palabra clave">
+              </mat-form-field>
+              <mat-form-field class="descField">
+                <input matInput [(ngModel)]="dctoMonto" placeholder="Monto" type="number">
+              </mat-form-field>
+              <mat-form-field class="descField">
+                <input matInput [(ngModel)]="dctoHasta" [matDatepicker]="pickerFin" placeholder="Fecha de fin">
+                <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFin></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-3 justify-content-center align-content-center">
+              <button mat-raised-button (click)="crearDescuento()" color="primary">Crear</button>
+            </div>
           </div>
+        </div>
+        <div class="col-sm-4">
+
         </div>
       </div>
     </div>

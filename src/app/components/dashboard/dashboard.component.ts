@@ -14,12 +14,14 @@ export class DashboardComponent implements OnInit {
   @ViewChild('sidenav', {static: true}) sidenav
 
   descuentos = [
-    {name: 'Porcentaje'}
+    {name: 'PORCENTAJE'},
+    {name: 'SOLES'}
   ]
   dctoTipo: string
   dctoDesde: Date
   dctoHasta: Date
   dctoMonto: number
+  dctoClave: string
 
   constructor(private renderer: Renderer2,
     private adminService: AdminService,
@@ -43,12 +45,14 @@ export class DashboardComponent implements OnInit {
       DESDE: this.dctoDesde,
       HASTA: this.dctoHasta,
       MONTO: this.dctoMonto,
-      TIPO: this.dctoTipo
+      TIPO: this.dctoTipo,
+      CLAVE: this.dctoClave
     }).then((res) => {
       this.dctoDesde = null
       this.dctoHasta = null
       this.dctoMonto = null
       this.dctoTipo = null
+      this.dctoClave = null
       this.snackBar.open('Descuento creado satisfactoriamente', 'OK', {duration:2000})
     })
   }
