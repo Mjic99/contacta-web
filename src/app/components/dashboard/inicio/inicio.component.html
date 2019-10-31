@@ -1,10 +1,10 @@
 <div class="row">
   <div class="col-sm">
     <agm-map [latitude]="-12.0837667" [longitude]="-76.9773847">
-        <agm-marker [latitude]="-12.0837667" [longitude]="-76.9773847"></agm-marker>
-        <ng-template *ngFor="let point of mapPoints">
-          <agm-marker [latitude]="point.lat" [longitude]="point.lng"></agm-marker>
-        </ng-template>
+      <agm-marker [latitude]="-12.0837667" [longitude]="-76.9773847"></agm-marker>
+      <ng-template *ngFor="let point of mapPoints">
+        <agm-marker [latitude]="point.lat" [longitude]="point.lng"></agm-marker>
+      </ng-template>
     </agm-map>
     <p *ngFor="let point of mapPoints">{{point.lat}} {{point.lng}}</p>
   </div>

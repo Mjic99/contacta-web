@@ -22,7 +22,7 @@
               <mat-form-field class="descField">
                 <mat-label>Seleccionar tipo</mat-label>
                 <mat-select [(ngModel)]="dctoTipo">
-                  <mat-option *ngFor="let descuento of descuentos" [value]="descuento.name">
+                  <mat-option *ngFor="let descuento of descuentosTipos" [value]="descuento.name">
                     {{descuento.name}}
                   </mat-option>
                 </mat-select>
@@ -33,24 +33,50 @@
                 <mat-datepicker #pickerInicio></mat-datepicker>
               </mat-form-field>
               <mat-form-field class="descField">
+                <input matInput [(ngModel)]="dctoHasta" [matDatepicker]="pickerFin" placeholder="Fecha de fin">
+                <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerFin></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="descField">
                 <input matInput [(ngModel)]="dctoClave" placeholder="Palabra clave">
               </mat-form-field>
               <mat-form-field class="descField">
                 <input matInput [(ngModel)]="dctoMonto" placeholder="Monto" type="number">
               </mat-form-field>
-              <mat-form-field class="descField">
-                <input matInput [(ngModel)]="dctoHasta" [matDatepicker]="pickerFin" placeholder="Fecha de fin">
-                <mat-datepicker-toggle matSuffix [for]="pickerFin"></mat-datepicker-toggle>
-                <mat-datepicker #pickerFin></mat-datepicker>
-              </mat-form-field>
             </div>
-            <div class="col-sm-3 justify-content-center align-content-center">
-              <button mat-raised-button (click)="crearDescuento()" color="primary">Crear</button>
+            <div class="col-sm-2">
+              <div class="justify-content-center align-content-center">
+                <button mat-raised-button (click)="crearDescuento()" color="primary">Crear</button>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-6">
+          <h3>Descuentos actuales</h3>
+          <table mat-table [dataSource]="descuentos" class="mat-elevation-z8">
+            <ng-container matColumnDef="clave">
+              <th mat-header-cell *matHeaderCellDef> Clave </th>
+              <td mat-cell *matCellDef="let element"> {{element.CLAVE}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="tipo">
+              <th mat-header-cell *matHeaderCellDef> Tipo </th>
+              <td mat-cell *matCellDef="let element"> {{element.TIPO}} </td>
+            </ng-container>
 
+            <ng-container matColumnDef="monto">
+              <th mat-header-cell *matHeaderCellDef> Monto </th>
+              <td mat-cell *matCellDef="let element"> {{element.MONTO}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="fin">
+              <th mat-header-cell *matHeaderCellDef> Fecha fin </th>
+              <td mat-cell *matCellDef="let element"> {{element.HASTA.toDate().toLocaleDateString()}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="descuentosHeader"></tr>
+            <tr mat-row *matRowDef="let row; columns: descuentosHeader;"></tr>
+          </table>
         </div>
       </div>
     </div>

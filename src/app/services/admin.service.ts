@@ -10,15 +10,19 @@ export class AdminService {
   constructor (private db: AngularFirestore) { }
 
   getTrabajadorList () : Observable<any[]> {
-    return this.db.collection('Trabajador_modelo').valueChanges();
+    return this.db.collection('Trabajador_modelo').valueChanges()
   }
 
   getClienteList () : Observable<any[]> {
-    return this.db.collection('Cliente_modelo').valueChanges();
+    return this.db.collection('Cliente_modelo').valueChanges()
   }
 
   addDescuento (descuento: Object) : Promise<any> {
     return this.db.collection('Descuento_modelo').add(descuento)
+  }
+
+  getDescuentos () : Observable<any[]> {
+    return this.db.collection('Descuento_modelo').valueChanges()
   }
 
 }

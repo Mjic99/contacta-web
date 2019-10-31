@@ -13,10 +13,13 @@ export class DashboardComponent implements OnInit {
   @ViewChildren('option') optionsDivs: QueryList<any>
   @ViewChild('sidenav', {static: true}) sidenav
 
-  descuentos = [
+  descuentosTipos = [
     {name: 'PORCENTAJE'},
     {name: 'SOLES'}
   ]
+  descuentos: Object[]
+  descuentosHeader: string[]
+
   dctoTipo: string
   dctoDesde: Date
   dctoHasta: Date
@@ -30,6 +33,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.page = 'Inicio'
     this.onResize()
+    this.getDescuentos()
   }
 
   changePage(event) {
@@ -55,6 +59,15 @@ export class DashboardComponent implements OnInit {
       this.dctoClave = null
       this.snackBar.open('Descuento creado satisfactoriamente', 'OK', {duration:2000})
     })
+  }
+
+  getDescuentos() {
+    this.adminService.getDescuentos().subscribe(descuentos => {
+      this.descuentos = descuentos
+      console.log(this.descuentos)
+    })
+    
+    this.descuentosHeader = ['clave', 'tipo', 'monto', 'fin']
   }
 
   @HostListener('window:resize', ['$event'])
