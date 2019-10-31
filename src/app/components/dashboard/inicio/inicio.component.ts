@@ -11,11 +11,6 @@ export class InicioComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'jobs'];
 
-  mapPoints: firebase.firestore.GeoPoint[] = [
-    new firebase.firestore.GeoPoint(-12.0837267, -76.9773347),
-    new firebase.firestore.GeoPoint(-12.0827267, -76.9673347)
-  ]
-
   topTrabajadores = [
     {position: 1, name: 'Juan Perez', jobs: 20},
     {position: 2, name: 'Pepe Gonzales', jobs: 14},
@@ -24,22 +19,46 @@ export class InicioComponent implements OnInit {
     {position: 5, name: 'Juan Torres', jobs: 5}
   ]
 
+  markers: marker[] = [
+	  {
+		  lat: 51.673858,
+		  lng: 7.815982,
+		  label: 'A'
+	  },
+	  {
+		  lat: 51.373858,
+		  lng: 7.215982,
+		  label: 'B'
+	  },
+	  {
+		  lat: 51.723858,
+		  lng: 7.895982,
+		  label: 'C'
+	  }
+  ]
+
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
     this.setMapPoints()
-    console.log(this.mapPoints)
   }
 
   setMapPoints() {
     this.adminService.getTrabajadorList().subscribe(users => {
-      this.mapPoints = users.filter((user) => {
-        return user.UBICACION
-      }).map((user) => {
-        return user.UBICACION
+      this.markers = users.filter( user => user.UBICACION ).map( user => {
+        return {
+          lat: user.UBICACION.latitude,
+          lng: user.UBICACION.longitude,
+          label: user.NOMBRE
+        }
       })
-      console.log(this.mapPoints)
+      console.log(this.markers)
     })
   }
+}
 
+interface marker {
+	lat: number
+	lng: number
+	label?: string
 }

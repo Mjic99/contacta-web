@@ -1,12 +1,21 @@
 <div class="row">
   <div class="col-sm">
-    <agm-map [latitude]="-12.0837667" [longitude]="-76.9773847">
-      <agm-marker [latitude]="-12.0837667" [longitude]="-76.9773847"></agm-marker>
-      <ng-template *ngFor="let point of mapPoints">
-        <agm-marker [latitude]="point.lat" [longitude]="point.lng"></agm-marker>
-      </ng-template>
+    <agm-map 
+      [latitude]="-12.0837667"
+      [longitude]="-76.9773847"
+      [disableDefaultUI]="true">
+      
+      <agm-marker 
+        *ngFor="let m of markers; let i = index"
+        [latitude]="m.lat"
+        [longitude]="m.lng">
+
+        <agm-info-window>
+          <strong>{{m.label}}</strong>
+        </agm-info-window>
+
+      </agm-marker>
     </agm-map>
-    <p *ngFor="let point of mapPoints">{{point.lat}} {{point.lng}}</p>
   </div>
   <div class="col-sm right-container">
     <table mat-table [dataSource]="topTrabajadores" class="mat-elevation-z8">
