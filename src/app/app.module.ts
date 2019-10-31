@@ -21,6 +21,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +29,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InicioComponent } from './components/dashboard/inicio/inicio.component';
-import { UsuariosComponent } from './components/dashboard/usuarios/usuarios.component';
+import { UsuariosComponent, UserDialog } from './components/dashboard/usuarios/usuarios.component';
 import { HistorialComponent } from './components/dashboard/historial/historial.component';
 
 
@@ -39,7 +40,8 @@ import { HistorialComponent } from './components/dashboard/historial/historial.c
     DashboardComponent,
     InicioComponent,
     UsuariosComponent,
-    HistorialComponent
+    HistorialComponent,
+    UserDialog
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -62,7 +64,11 @@ import { HistorialComponent } from './components/dashboard/historial/historial.c
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    UserDialog
   ],
   providers: [AngularFireAuth, AngularFirestore],
   bootstrap: [AppComponent]

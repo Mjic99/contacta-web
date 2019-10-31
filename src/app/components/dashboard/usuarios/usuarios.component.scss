@@ -3,6 +3,10 @@ div.row {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 
+  div.col-sm > mat-form-field {
+    display: block;
+  }
+
   div {
     padding-top: 0.5rem;
     
@@ -10,7 +14,7 @@ div.row {
       display: flex;
       justify-content: center;
       max-height: 50vh;
-      overflow-y: scroll;
+      overflow-y: auto;
 
       mat-accordion {
         width: 100%;

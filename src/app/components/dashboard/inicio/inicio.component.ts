@@ -31,7 +31,6 @@ export class InicioComponent implements OnInit {
         }
       })
       this.topTrabajadores.sort( (w1, w2) => w1.jobs - w2.jobs )
-      console.log(this.topTrabajadores)
     })
   }
 
@@ -44,7 +43,6 @@ export class InicioComponent implements OnInit {
           label: user.NOMBRE
         }
       })
-      console.log(this.markers)
     })
   }
 }

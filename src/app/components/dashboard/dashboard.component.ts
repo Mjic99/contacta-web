@@ -64,7 +64,6 @@ export class DashboardComponent implements OnInit {
   getDescuentos() {
     this.adminService.getDescuentos().subscribe(descuentos => {
       this.descuentos = descuentos
-      console.log(this.descuentos)
     })
     
     this.descuentosHeader = ['clave', 'tipo', 'monto', 'fin']

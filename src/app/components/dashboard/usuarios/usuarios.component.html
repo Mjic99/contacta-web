@@ -1,46 +1,30 @@
 <div class="row">
   <div class="col-sm">
-    <div class="row">
-      <div class="col-sm">
-        <mat-button-toggle-group [(ngModel)]="userListType" (change)="setUsersType()" name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle value="cliente">Clientes</mat-button-toggle>
-          <mat-button-toggle value="trabajador">Trabajadores</mat-button-toggle>
-        </mat-button-toggle-group>
-        <mat-form-field>
-          <mat-label>Seleccionar campo</mat-label>
-          <mat-select [(ngModel)]="filterField">
-            <mat-option *ngFor="let field of userFields" [value]="field">
-              {{field}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div class="col-sm">
-        <mat-form-field>
-          <input (change)="filterList()" [(ngModel)]="filterValue" matInput placeholder="Valor" type="text">
-        </mat-form-field>
-      </div>
-    </div>
+    <mat-button-toggle-group [(ngModel)]="userListType" (change)="setUsersType()" name="fontStyle" aria-label="Font Style">
+      <mat-button-toggle value="cliente">Clientes</mat-button-toggle>
+      <mat-button-toggle value="trabajador">Trabajadores</mat-button-toggle>
+    </mat-button-toggle-group>
+    <mat-form-field>
+      <input (input)="filterList()" [(ngModel)]="filterValue" matInput placeholder="Buscar..." type="text">
+    </mat-form-field>
   </div>
-  <div class="col-sm right-container">
+  <div class="col-sm-8 right-container">
     <mat-accordion>
       <mat-expansion-panel *ngFor="let user of filteredUsers">
         <mat-expansion-panel-header>
           <mat-panel-title>
             {{user.NOMBRE}}
           </mat-panel-title>
-          <mat-panel-description>
-            {{user.type}}
-          </mat-panel-description>
         </mat-expansion-panel-header>
-        <p *ngIf="user.SERVICIOSREALIZADOS; else clientInfo">
-          Servicios realizados: {{user.SERVICIOSREALIZADOS.length}}
+        <p *ngIf="userListType=='trabajador'; else clientInfo">
+          Servicios realizados: {{user.SERVICIOSREALIZADOS ? user.SERVICIOSREALIZADOS.length : '0'}}
         </p>
         <ng-template #clientInfo>
           <p *ngIf="user.SERVICIOS">
             Servicios contratados: {{user.SERVICIOS.length}}
           </p>
         </ng-template>
+        <button mat-raised-button (click)="openDialog(user)">Ver más info</button>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
