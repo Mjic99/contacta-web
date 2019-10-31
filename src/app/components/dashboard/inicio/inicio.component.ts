@@ -9,38 +9,30 @@ import * as firebase from 'firebase'
 })
 export class InicioComponent implements OnInit {
 
-  displayedColumns: string[] = ['position', 'name', 'jobs'];
+  topTrabajadores = []
+  displayedColumns: string[] = ['position', 'name', 'jobs']
 
-  topTrabajadores = [
-    {position: 1, name: 'Juan Perez', jobs: 20},
-    {position: 2, name: 'Pepe Gonzales', jobs: 14},
-    {position: 3, name: 'Nicolas Pitta', jobs: 11},
-    {position: 4, name: 'Daniel Rodriguez', jobs: 10},
-    {position: 5, name: 'Juan Torres', jobs: 5}
-  ]
-
-  markers: marker[] = [
-	  {
-		  lat: 51.673858,
-		  lng: 7.815982,
-		  label: 'A'
-	  },
-	  {
-		  lat: 51.373858,
-		  lng: 7.215982,
-		  label: 'B'
-	  },
-	  {
-		  lat: 51.723858,
-		  lng: 7.895982,
-		  label: 'C'
-	  }
-  ]
+  markers: marker[]
 
   constructor(private adminService: AdminService) { }
 
   ngOnInit() {
     this.setMapPoints()
+    this.setTrabajadores()
+  }
+
+  setTrabajadores() {
+    this.adminService.getTrabajadorList().subscribe(workers => {
+      this.topTrabajadores = workers.filter( worker => worker.SERVICIOSREALIZADOS ).map( (worker, index) => {
+        return {
+          position: index + 1,
+          name: worker.NOMBRE,
+          jobs: worker.SERVICIOSREALIZADOS.length
+        }
+      })
+      this.topTrabajadores.sort( (w1, w2) => w1.jobs - w2.jobs )
+      console.log(this.topTrabajadores)
+    })
   }
 
   setMapPoints() {
