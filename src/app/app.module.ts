@@ -31,6 +31,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InicioComponent } from './components/dashboard/inicio/inicio.component';
 import { UsuariosComponent, UserDialog } from './components/dashboard/usuarios/usuarios.component';
 import { HistorialComponent } from './components/dashboard/historial/historial.component';
+import { ChatsComponent } from './components/dashboard/chats/chats.component';
+import { NbThemeModule, NbLayoutModule, NbChatModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
 @NgModule({
@@ -41,7 +44,8 @@ import { HistorialComponent } from './components/dashboard/historial/historial.c
     InicioComponent,
     UsuariosComponent,
     HistorialComponent,
-    UserDialog
+    UserDialog,
+    ChatsComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -65,7 +69,11 @@ import { HistorialComponent } from './components/dashboard/historial/historial.c
     MatDatepickerModule,
     MatNativeDateModule,
     MatButtonToggleModule,
-    MatDialogModule
+    MatDialogModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbChatModule
   ],
   entryComponents: [
     UserDialog
