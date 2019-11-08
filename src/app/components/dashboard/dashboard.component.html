@@ -4,7 +4,7 @@
     <div #option [ngClass]="'selected'" (click)="changePage($event)">Inicio</div>
     <div #option (click)="changePage($event)">Usuarios</div>
     <div #option (click)="changePage($event)">Historial de servicios</div>
-    <div #option (click)="changePage($event)">Chats</div>
+    <div (click)="router.navigate(['/chats'])">Chats</div>
   </mat-sidenav>
   <mat-sidenav-content>
     <div class="container-fluid">
@@ -14,8 +14,6 @@
       </dashboard-usuarios>
       <dashboard-historial *ngIf="this.page=='Historial de servicios'">
       </dashboard-historial>
-      <dashboard-chats *ngIf="this.page=='Chats'">
-      </dashboard-chats>
       <div class="row">
         <div class="col-sm">
           <h3>Crear descuento</h3>

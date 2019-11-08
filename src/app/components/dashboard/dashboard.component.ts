@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2, ViewChildren, QueryList, HostListener, ViewChild } from '@angular/core';
 import { AdminService } from '../../services/admin.service';
+import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 
 @Component({
@@ -28,7 +29,8 @@ export class DashboardComponent implements OnInit {
 
   constructor(private renderer: Renderer2,
     private adminService: AdminService,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit() {
     this.page = 'Inicio'

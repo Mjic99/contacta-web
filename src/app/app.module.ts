@@ -32,7 +32,7 @@ import { InicioComponent } from './components/dashboard/inicio/inicio.component'
 import { UsuariosComponent, UserDialog } from './components/dashboard/usuarios/usuarios.component';
 import { HistorialComponent } from './components/dashboard/historial/historial.component';
 import { ChatsComponent } from './components/dashboard/chats/chats.component';
-import { NbThemeModule, NbLayoutModule, NbChatModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbChatModule, NbSidebarModule, NbIconModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 
@@ -73,7 +73,10 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbThemeModule.forRoot({ name: 'default' }),
     NbLayoutModule,
     NbEvaIconsModule,
-    NbChatModule
+    NbChatModule,
+    NbSidebarModule.forRoot(),
+    NbSidebarModule,
+    NbIconModule
   ],
   entryComponents: [
     UserDialog
