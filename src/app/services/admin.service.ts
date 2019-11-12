@@ -25,4 +25,12 @@ export class AdminService {
     return this.db.collection('Descuento_modelo').valueChanges()
   }
 
+  getUserInfo (id: string) : Observable<any> {
+    return this.db.doc(`Admin_modelo/${id}`).valueChanges()
+  }
+
+  getChats (id: string) : Observable<any> {
+    return this.db.doc(`Admin_modelo/${id}`).valueChanges()
+  }
+
 }

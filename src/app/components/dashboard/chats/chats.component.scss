@@ -7,11 +7,15 @@
   background: #eee;
 
   mat-sidenav {
-    width: 15%;
+    width: 20%;
     min-width:10rem;
 
-    nb-icon {
-      font-size: 3rem;
+    div.d-flex.justify-content-start {
+      cursor: pointer;
+
+      nb-icon {
+        font-size: 3rem;
+      }
     }
   }
 
