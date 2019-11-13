@@ -13,8 +13,11 @@ export class AuthService {
   public currentUser: User;
 
   constructor(public afAuth: AngularFireAuth) {
-    this.currentUser = {
-      uid: null
+    this.currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
+    if (!this.currentUser) {
+      this.currentUser = {
+        uid: null
+      }
     }
   }
 
@@ -27,6 +30,7 @@ export class AuthService {
           this.currentUser = {
             uid: userData.user.uid
           }
+          sessionStorage.setItem('currentUser', JSON.stringify(this.currentUser))
           resolve(userData)
         }, 
         err => reject(err))

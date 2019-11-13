@@ -3,9 +3,15 @@
     <div class="d-flex justify-content-start" (click)="router.navigate(['/dashboard'])">
       <nb-icon icon="arrow-ios-back"></nb-icon>
     </div>
+    <nb-list>
+      <nb-list-item *ngFor="let user of users">
+        <nb-user [name]="user.NOMBRE" (click)="setChat(user.CHATADMIN)">
+        </nb-user>
+      </nb-list-item>
+    </nb-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <nb-chat title="Nebular Conversational UI" size="large">
+    <nb-chat title="Nebular Conversational UI" size="large" *ngIf="currentChat">
       <nb-chat-message
         type="text"
         message="Hello world!">

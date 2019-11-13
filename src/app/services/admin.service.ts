@@ -33,4 +33,8 @@ export class AdminService {
     return this.db.doc(`Admin_modelo/${id}`).valueChanges()
   }
 
+  getChatUser (chatPath: string) : Observable<any> {
+    return this.db.collection('Cliente_modelo', ref => ref.where('CHATADMIN', '==', this.db.doc(chatPath).ref)).valueChanges()
+  }
+
 }
