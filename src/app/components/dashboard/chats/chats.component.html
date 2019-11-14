@@ -5,18 +5,21 @@
     </div>
     <nb-list>
       <nb-list-item *ngFor="let user of users">
-        <nb-user [name]="user.NOMBRE" (click)="setChat(user.CHATADMIN)">
+        <nb-user [name]="user.NOMBRE" (click)="setChat(user)">
         </nb-user>
       </nb-list-item>
     </nb-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <nb-chat title="Nebular Conversational UI" size="large" *ngIf="currentChat">
+    <nb-chat title="{{currentChat.name}}" size="large" *ngIf="currentChat">
       <nb-chat-message
+        *ngFor="let msg of currentChat.messages"
         type="text"
-        message="Hello world!">
+        [message]="msg.text"
+        [reply]="msg.reply">
       </nb-chat-message>
-      <nb-chat-form></nb-chat-form>
+      <nb-chat-form (send)="sendMessage($event)">
+      </nb-chat-form>
     </nb-chat>
   </mat-sidenav-content>
 </mat-sidenav-container>
