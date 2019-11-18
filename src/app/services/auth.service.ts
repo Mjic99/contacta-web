@@ -41,4 +41,11 @@ export class AuthService {
     return this.afAuth.auth.signOut()
   }
 
+  isAuthenticated() {
+    if (JSON.parse(sessionStorage.getItem('currentUser')) && JSON.parse(sessionStorage.getItem('currentUser')).uid) {
+      return true
+    } else {
+      return false
+    } 
+  }
 }
