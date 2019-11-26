@@ -22,6 +22,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSortModule} from '@angular/material/sort';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
@@ -78,7 +79,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbSidebarModule,
     NbIconModule,
     NbListModule,
-    NbUserModule
+    NbUserModule,
+    MatSortModule
   ],
   entryComponents: [
     UserDialog

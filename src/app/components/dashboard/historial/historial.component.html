@@ -1,1 +1,33 @@
-<p>historial works!</p>
+<div>
+  <h1>Historial de servicios</h1>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <ng-container matColumnDef="FECHA">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+      <td mat-cell *matCellDef="let service"> <ng-template [ngIf]="service.FECHAINICIO">{{service.FECHAINICIO.toDate().toLocaleDateString()}}</ng-template> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DESCRIPCION">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+      <td mat-cell *matCellDef="let service"> {{service.DESCRIPCION}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="COSTO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Costo </th>
+      <td mat-cell *matCellDef="let service"> {{service.COSTO}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DIRECCION">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+      <td mat-cell *matCellDef="let service"> {{service.DIRECCION}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ESTADO">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+      <td mat-cell *matCellDef="let service"> {{service.ESTADO}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>

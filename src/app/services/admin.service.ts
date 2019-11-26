@@ -45,11 +45,14 @@ export class AdminService {
       MENSAJE: text,
       USUARIO: `Admin_modelo/${this.authService.currentUser.uid}`
     }).then(messageRef => {
-      console.log(messageRef)
       this.db.doc(chatPath).update({
         MENSAJES: firebase.firestore.FieldValue.arrayUnion(messageRef.path)
       })
     })
+  }
+
+  getServices () : Observable<any> {
+    return this.db.collection('Servicio_modelo').valueChanges()
   }
 
 }
