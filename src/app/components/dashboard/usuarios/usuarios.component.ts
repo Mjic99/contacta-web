@@ -28,7 +28,7 @@ export class UsuariosComponent implements OnInit {
   }
 
   openDialog(user): void {
-    const dialogRef = this.dialog.open(UserDialog, {
+    this.dialog.open(UserDialog, {
       data: user
     })
   }
