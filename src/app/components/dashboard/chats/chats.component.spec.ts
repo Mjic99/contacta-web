@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatsComponent } from './chats.component';
+import { AppModule } from 'src/app/app.module';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ChatsComponent', () => {
   let component: ChatsComponent;
@@ -8,7 +11,9 @@ describe('ChatsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatsComponent ]
+      imports: [AppModule],
+      providers: [AngularFirestore],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));

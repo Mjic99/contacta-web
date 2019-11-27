@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HistorialComponent } from './historial.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AppModule } from 'src/app/app.module';
 
 describe('HistorialComponent', () => {
   let component: HistorialComponent;
@@ -8,7 +11,9 @@ describe('HistorialComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HistorialComponent ]
+      imports: [AppModule],
+      providers: [AngularFirestore],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     })
     .compileComponents();
   }));
