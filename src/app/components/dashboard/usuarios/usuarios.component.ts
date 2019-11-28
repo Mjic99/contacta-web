@@ -35,7 +35,7 @@ export class UsuariosComponent implements OnInit {
 
   filterList (): void {
     this.filteredUsers = this.users.filter( user => {
-      if (user.NOMBRE){
+      if (user && user.NOMBRE){
         return user.NOMBRE.toLowerCase().includes(this.filterValue.toLowerCase())
       }
       else {
