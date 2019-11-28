@@ -38,4 +38,15 @@ describe('UsuariosComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should filter users', () => {
+    component.users = [
+      {NOMBRE:'JUAN'},
+      {NOMBRE:'PEPE'},
+      {NOMBRE:null}
+    ]
+    component.filterValue = 'ua'
+    component.filterList()
+    expect(component.filteredUsers).toEqual([{NOMBRE:'JUAN'}]);
+  });
 });
