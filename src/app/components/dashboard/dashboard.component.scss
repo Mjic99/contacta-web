@@ -46,6 +46,10 @@
 
   div.row {
     margin-top: 1rem;
+    div.col-sm-6 {
+      overflow-y: auto;
+      max-height: 50vh;
+    }
     table {
       width: 100%;
     }
