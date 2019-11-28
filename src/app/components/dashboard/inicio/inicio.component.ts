@@ -26,10 +26,14 @@ export class InicioComponent implements OnInit {
         return {
           position: index + 1,
           name: worker.NOMBRE,
-          jobs: worker.SERVICIOSREALIZADOS.length
+          jobs: worker.SERVICIOSREALIZADOS ? worker.SERVICIOSREALIZADOS.length : 0
         }
       })
-      this.topTrabajadores.sort( (w1, w2) => w1.jobs - w2.jobs )
+      .sort( (w1, w2) => w2.jobs - w1.jobs )
+      .slice(0,5).map((worker, index) => {
+        worker.position = index + 1
+        return worker
+      })
     })
   }
 
