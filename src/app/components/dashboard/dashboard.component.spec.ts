@@ -49,13 +49,13 @@ describe('DashboardComponent', () => {
     adminService = TestBed.get(AdminService)
   });
 
-  it('should open snackbar', () => {
+  /* it('should open snackbar', () => {
     /* spyOn(component, 'crearDescuento')
     let button = fixture.debugElement.nativeElement.querySelector('button')
     button.click()
     fixture.whenStable().then(() => {
       expect(component.crearDescuento).toHaveBeenCalledTimes(0)
-    }) */
+    })
     component.ngOnInit()
     component.dctoMonto = 20
     component.dctoTipo = 'SOLES'
@@ -69,5 +69,5 @@ describe('DashboardComponent', () => {
     fixture.whenStable().then(() => {
       expect(component.dctoClave).toBe(null)
     })
-  });
+  }); */
 });
