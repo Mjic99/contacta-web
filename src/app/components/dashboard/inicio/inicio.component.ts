@@ -22,7 +22,7 @@ export class InicioComponent implements OnInit {
 
   setTrabajadores() {
     this.adminService.getTrabajadorList().subscribe(workers => {
-      this.topTrabajadores = workers.filter( worker => worker.SERVICIOSREALIZADOS ).map( (worker, index) => {
+      this.topTrabajadores = workers.map( (worker, index) => {
         return {
           position: index + 1,
           name: worker.NOMBRE,
