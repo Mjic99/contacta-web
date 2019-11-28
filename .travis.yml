@@ -10,8 +10,8 @@ branches:
 before_script:
   - npm install -g @angular/cli
 script:
-  - ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
   - npm install
+  - ng test --no-watch --no-progress --browsers=ChromeHeadlessCI
   - ng build
 deploy:
   skip_cleanup: true
