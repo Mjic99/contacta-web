@@ -47,20 +47,24 @@ export class DashboardComponent implements OnInit {
   }
 
   crearDescuento() {
-    this.adminService.addDescuento({
-      DESDE: this.dctoDesde,
-      HASTA: this.dctoHasta,
-      MONTO: this.dctoMonto,
-      TIPO: this.dctoTipo,
-      CLAVE: this.dctoClave
-    }).then((res) => {
-      this.dctoDesde = null
-      this.dctoHasta = null
-      this.dctoMonto = null
-      this.dctoTipo = null
-      this.dctoClave = null
-      this.snackBar.open('Descuento creado satisfactoriamente', 'OK', {duration:2000})
-    })
+    if (this.dctoDesde && this.dctoHasta && this.dctoMonto && this.dctoTipo && this.dctoClave) {
+      this.adminService.addDescuento({
+        DESDE: this.dctoDesde,
+        HASTA: this.dctoHasta,
+        MONTO: this.dctoMonto,
+        TIPO: this.dctoTipo,
+        CLAVE: this.dctoClave
+      }).then((res) => {
+        this.dctoDesde = null
+        this.dctoHasta = null
+        this.dctoMonto = null
+        this.dctoTipo = null
+        this.dctoClave = null
+        this.snackBar.open('Descuento creado satisfactoriamente', 'OK', {duration:2000})
+      })
+    } else {
+      this.snackBar.open('Debes llenar todos los campos', 'ERROR', {duration:2000})
+    }
   }
 
   getDescuentos() {
